@@ -1,0 +1,21 @@
+# Simulation Data
+*.npz
+*.pkl
+*.txt
+results/
+data/
+
+# Compiled NEURON files
+x86_64/
+arm64/
+*.o
+*.c
+
+# Python caches
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.vscode/
+
+# OS generated files
+.DS_Store

@@ -1,0 +1,7 @@
+#ifndef _INCLUDED_INMDA_PYso_PYdr_stateupdater_codeobject
+#define _INCLUDED_INMDA_PYso_PYdr_stateupdater_codeobject
+
+void _run_INMDA_PYso_PYdr_stateupdater_codeobject();
+
+
+#endif

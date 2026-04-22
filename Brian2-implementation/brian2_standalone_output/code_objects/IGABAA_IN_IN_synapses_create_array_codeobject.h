@@ -1,0 +1,7 @@
+#ifndef _INCLUDED_IGABAA_IN_IN_synapses_create_array_codeobject
+#define _INCLUDED_IGABAA_IN_IN_synapses_create_array_codeobject
+
+void _run_IGABAA_IN_IN_synapses_create_array_codeobject();
+
+
+#endif

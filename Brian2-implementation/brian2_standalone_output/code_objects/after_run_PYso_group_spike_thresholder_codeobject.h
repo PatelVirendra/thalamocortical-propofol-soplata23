@@ -1,0 +1,6 @@
+#ifndef _INCLUDED_PYso_group_spike_thresholder_codeobject_after
+#define _INCLUDED_PYso_group_spike_thresholder_codeobject_after
+
+void _after_run_PYso_group_spike_thresholder_codeobject();
+
+#endif

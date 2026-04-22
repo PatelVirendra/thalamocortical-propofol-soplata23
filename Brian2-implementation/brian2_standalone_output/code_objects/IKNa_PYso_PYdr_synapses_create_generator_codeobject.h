@@ -1,0 +1,7 @@
+#ifndef _INCLUDED_IKNa_PYso_PYdr_synapses_create_generator_codeobject
+#define _INCLUDED_IKNa_PYso_PYdr_synapses_create_generator_codeobject
+
+void _run_IKNa_PYso_PYdr_synapses_create_generator_codeobject();
+
+
+#endif

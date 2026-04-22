@@ -1,0 +1,7 @@
+#ifndef _INCLUDED_RE_group_spike_resetter_codeobject
+#define _INCLUDED_RE_group_spike_resetter_codeobject
+
+void _run_RE_group_spike_resetter_codeobject();
+
+
+#endif

@@ -1,0 +1,7 @@
+#ifndef _INCLUDED_ICOM_PYdr_PYso_summed_variable_iCOM_post_codeobject
+#define _INCLUDED_ICOM_PYdr_PYso_summed_variable_iCOM_post_codeobject
+
+void _run_ICOM_PYdr_PYso_summed_variable_iCOM_post_codeobject();
+
+
+#endif

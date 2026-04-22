@@ -1,0 +1,7 @@
+#ifndef _INCLUDED_INMDA_PYso_IN_synapses_create_array_codeobject
+#define _INCLUDED_INMDA_PYso_IN_synapses_create_array_codeobject
+
+void _run_INMDA_PYso_IN_synapses_create_array_codeobject();
+
+
+#endif

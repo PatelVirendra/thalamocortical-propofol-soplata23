@@ -1,0 +1,7 @@
+#ifndef _INCLUDED_IKNa_PYso_PYdr_stateupdater_codeobject
+#define _INCLUDED_IKNa_PYso_PYdr_stateupdater_codeobject
+
+void _run_IKNa_PYso_PYdr_stateupdater_codeobject();
+
+
+#endif

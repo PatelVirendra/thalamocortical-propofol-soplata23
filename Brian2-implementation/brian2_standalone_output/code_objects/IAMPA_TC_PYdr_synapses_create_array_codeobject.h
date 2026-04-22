@@ -1,0 +1,7 @@
+#ifndef _INCLUDED_IAMPA_TC_PYdr_synapses_create_array_codeobject
+#define _INCLUDED_IAMPA_TC_PYdr_synapses_create_array_codeobject
+
+void _run_IAMPA_TC_PYdr_synapses_create_array_codeobject();
+
+
+#endif

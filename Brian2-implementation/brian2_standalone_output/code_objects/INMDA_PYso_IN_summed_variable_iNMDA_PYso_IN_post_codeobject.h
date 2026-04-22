@@ -1,0 +1,7 @@
+#ifndef _INCLUDED_INMDA_PYso_IN_summed_variable_iNMDA_PYso_IN_post_codeobject
+#define _INCLUDED_INMDA_PYso_IN_summed_variable_iNMDA_PYso_IN_post_codeobject
+
+void _run_INMDA_PYso_IN_summed_variable_iNMDA_PYso_IN_post_codeobject();
+
+
+#endif

@@ -1,0 +1,7 @@
+#ifndef _INCLUDED_IGABAA_RE_TC_synapses_create_generator_codeobject
+#define _INCLUDED_IGABAA_RE_TC_synapses_create_generator_codeobject
+
+void _run_IGABAA_RE_TC_synapses_create_generator_codeobject();
+
+
+#endif

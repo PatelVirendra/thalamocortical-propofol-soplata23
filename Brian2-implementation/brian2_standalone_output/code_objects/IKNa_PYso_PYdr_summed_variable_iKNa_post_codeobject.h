@@ -1,0 +1,7 @@
+#ifndef _INCLUDED_IKNa_PYso_PYdr_summed_variable_iKNa_post_codeobject
+#define _INCLUDED_IKNa_PYso_PYdr_summed_variable_iKNa_post_codeobject
+
+void _run_IKNa_PYso_PYdr_summed_variable_iKNa_post_codeobject();
+
+
+#endif

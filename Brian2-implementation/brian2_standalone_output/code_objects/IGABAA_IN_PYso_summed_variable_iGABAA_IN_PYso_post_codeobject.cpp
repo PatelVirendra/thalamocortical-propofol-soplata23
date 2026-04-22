@@ -1,0 +1,227 @@
+#include "code_objects/IGABAA_IN_PYso_summed_variable_iGABAA_IN_PYso_post_codeobject.h"
+#include "objects.h"
+#include "brianlib/common_math.h"
+#include "brianlib/stdint_compat.h"
+#include<chrono>
+#include<cmath>
+#include<ctime>
+#include<iostream>
+#include<fstream>
+#include<climits>
+
+////// SUPPORT CODE ///////
+namespace {
+        
+    template <typename T>
+    static inline T _clip(const T value, const double a_min, const double a_max)
+    {
+        if (value < a_min)
+            return a_min;
+        if (value > a_max)
+            return a_max;
+        return value;
+    }
+    template < typename T1, typename T2 > struct _higher_type;
+    template < > struct _higher_type<int32_t,int32_t> { typedef int32_t type; };
+    template < > struct _higher_type<int32_t,int64_t> { typedef int64_t type; };
+    template < > struct _higher_type<int32_t,float> { typedef float type; };
+    template < > struct _higher_type<int32_t,double> { typedef double type; };
+    template < > struct _higher_type<int32_t,long double> { typedef long double type; };
+    template < > struct _higher_type<int64_t,int32_t> { typedef int64_t type; };
+    template < > struct _higher_type<int64_t,int64_t> { typedef int64_t type; };
+    template < > struct _higher_type<int64_t,float> { typedef float type; };
+    template < > struct _higher_type<int64_t,double> { typedef double type; };
+    template < > struct _higher_type<int64_t,long double> { typedef long double type; };
+    template < > struct _higher_type<float,int32_t> { typedef float type; };
+    template < > struct _higher_type<float,int64_t> { typedef float type; };
+    template < > struct _higher_type<float,float> { typedef float type; };
+    template < > struct _higher_type<float,double> { typedef double type; };
+    template < > struct _higher_type<float,long double> { typedef long double type; };
+    template < > struct _higher_type<double,int32_t> { typedef double type; };
+    template < > struct _higher_type<double,int64_t> { typedef double type; };
+    template < > struct _higher_type<double,float> { typedef double type; };
+    template < > struct _higher_type<double,double> { typedef double type; };
+    template < > struct _higher_type<double,long double> { typedef long double type; };
+    template < > struct _higher_type<long double,int32_t> { typedef long double type; };
+    template < > struct _higher_type<long double,int64_t> { typedef long double type; };
+    template < > struct _higher_type<long double,float> { typedef long double type; };
+    template < > struct _higher_type<long double,double> { typedef long double type; };
+    template < > struct _higher_type<long double,long double> { typedef long double type; };
+    // General template, used for floating point types
+    template < typename T1, typename T2 >
+    static inline typename _higher_type<T1,T2>::type
+    _brian_mod(T1 x, T2 y)
+    {
+        return x-y*floor(1.0*x/y);
+    }
+    // Specific implementations for integer types
+    // (from Cython, see LICENSE file)
+    template <>
+    inline int32_t _brian_mod(int32_t x, int32_t y)
+    {
+        int32_t r = x % y;
+        r += ((r != 0) & ((r ^ y) < 0)) * y;
+        return r;
+    }
+    template <>
+    inline int64_t _brian_mod(int32_t x, int64_t y)
+    {
+        int64_t r = x % y;
+        r += ((r != 0) & ((r ^ y) < 0)) * y;
+        return r;
+    }
+    template <>
+    inline int64_t _brian_mod(int64_t x, int32_t y)
+    {
+        int64_t r = x % y;
+        r += ((r != 0) & ((r ^ y) < 0)) * y;
+        return r;
+    }
+    template <>
+    inline int64_t _brian_mod(int64_t x, int64_t y)
+    {
+        int64_t r = x % y;
+        r += ((r != 0) & ((r ^ y) < 0)) * y;
+        return r;
+    }
+    // General implementation, used for floating point types
+    template < typename T1, typename T2 >
+    static inline typename _higher_type<T1,T2>::type
+    _brian_floordiv(T1 x, T2 y)
+    {{
+        return floor(1.0*x/y);
+    }}
+    // Specific implementations for integer types
+    // (from Cython, see LICENSE file)
+    template <>
+    inline int32_t _brian_floordiv<int32_t, int32_t>(int32_t a, int32_t b) {
+        int32_t q = a / b;
+        int32_t r = a - q*b;
+        q -= ((r != 0) & ((r ^ b) < 0));
+        return q;
+    }
+    template <>
+    inline int64_t _brian_floordiv<int32_t, int64_t>(int32_t a, int64_t b) {
+        int64_t q = a / b;
+        int64_t r = a - q*b;
+        q -= ((r != 0) & ((r ^ b) < 0));
+        return q;
+    }
+    template <>
+    inline int64_t _brian_floordiv<int64_t, int>(int64_t a, int32_t b) {
+        int64_t q = a / b;
+        int64_t r = a - q*b;
+        q -= ((r != 0) & ((r ^ b) < 0));
+        return q;
+    }
+    template <>
+    inline int64_t _brian_floordiv<int64_t, int64_t>(int64_t a, int64_t b) {
+        int64_t q = a / b;
+        int64_t r = a - q*b;
+        q -= ((r != 0) & ((r ^ b) < 0));
+        return q;
+    }
+    #ifdef _MSC_VER
+    #define _brian_pow(x, y) (pow((double)(x), (y)))
+    #else
+    #define _brian_pow(x, y) (pow((x), (y)))
+    #endif
+
+}
+
+////// HASH DEFINES ///////
+
+
+
+void _run_IGABAA_IN_PYso_summed_variable_iGABAA_IN_PYso_post_codeobject()
+{
+    using namespace brian;
+
+
+    ///// CONSTANTS ///////////
+    double* const _array_IGABAA_IN_PYso_EGABAA = _dynamic_array_IGABAA_IN_PYso_EGABAA.empty()? 0 : &_dynamic_array_IGABAA_IN_PYso_EGABAA[0];
+const size_t _numEGABAA = _dynamic_array_IGABAA_IN_PYso_EGABAA.size();
+const size_t _numN = 1;
+const int64_t N_post = 100;
+double* const _array_IGABAA_IN_PYso_Npost = _dynamic_array_IGABAA_IN_PYso_Npost.empty()? 0 : &_dynamic_array_IGABAA_IN_PYso_Npost[0];
+const size_t _numNpost = _dynamic_array_IGABAA_IN_PYso_Npost.size();
+double* const _array_IGABAA_IN_PYso_Npre = _dynamic_array_IGABAA_IN_PYso_Npre.empty()? 0 : &_dynamic_array_IGABAA_IN_PYso_Npre[0];
+const size_t _numNpre = _dynamic_array_IGABAA_IN_PYso_Npre.size();
+int32_t* const _array_IGABAA_IN_PYso__synaptic_post = _dynamic_array_IGABAA_IN_PYso__synaptic_post.empty()? 0 : &_dynamic_array_IGABAA_IN_PYso__synaptic_post[0];
+const size_t _num_synaptic_post = _dynamic_array_IGABAA_IN_PYso__synaptic_post.size();
+double* const _array_IGABAA_IN_PYso_gGABAA = _dynamic_array_IGABAA_IN_PYso_gGABAA.empty()? 0 : &_dynamic_array_IGABAA_IN_PYso_gGABAA[0];
+const size_t _numgGABAA = _dynamic_array_IGABAA_IN_PYso_gGABAA.size();
+const size_t _numiGABAA_IN_PYso_post = 100;
+double* const _array_IGABAA_IN_PYso_propoCondMult = _dynamic_array_IGABAA_IN_PYso_propoCondMult.empty()? 0 : &_dynamic_array_IGABAA_IN_PYso_propoCondMult[0];
+const size_t _numpropoCondMult = _dynamic_array_IGABAA_IN_PYso_propoCondMult.size();
+double* const _array_IGABAA_IN_PYso_radius = _dynamic_array_IGABAA_IN_PYso_radius.empty()? 0 : &_dynamic_array_IGABAA_IN_PYso_radius[0];
+const size_t _numradius = _dynamic_array_IGABAA_IN_PYso_radius.size();
+char* const _array_IGABAA_IN_PYso_remove_recurrent_bool = _dynamic_array_IGABAA_IN_PYso_remove_recurrent_bool.empty()? 0 : &_dynamic_array_IGABAA_IN_PYso_remove_recurrent_bool[0];
+const size_t _numremove_recurrent_bool = _dynamic_array_IGABAA_IN_PYso_remove_recurrent_bool.size();
+double* const _array_IGABAA_IN_PYso_res_GABAA = _dynamic_array_IGABAA_IN_PYso_res_GABAA.empty()? 0 : &_dynamic_array_IGABAA_IN_PYso_res_GABAA[0];
+const size_t _numres_GABAA = _dynamic_array_IGABAA_IN_PYso_res_GABAA.size();
+double* const _array_IGABAA_IN_PYso_sGABAA = _dynamic_array_IGABAA_IN_PYso_sGABAA.empty()? 0 : &_dynamic_array_IGABAA_IN_PYso_sGABAA[0];
+const size_t _numsGABAA = _dynamic_array_IGABAA_IN_PYso_sGABAA.size();
+const size_t _numv_post = 100;
+const size_t _num_postsynaptic_idx = _dynamic_array_IGABAA_IN_PYso__synaptic_post.size();
+    ///// POINTERS ////////////
+        
+    double* __restrict  _ptr_array_IGABAA_IN_PYso_EGABAA = _array_IGABAA_IN_PYso_EGABAA;
+    int32_t*   _ptr_array_IGABAA_IN_PYso_N = _array_IGABAA_IN_PYso_N;
+    double* __restrict  _ptr_array_IGABAA_IN_PYso_Npost = _array_IGABAA_IN_PYso_Npost;
+    double* __restrict  _ptr_array_IGABAA_IN_PYso_Npre = _array_IGABAA_IN_PYso_Npre;
+    int32_t* __restrict  _ptr_array_IGABAA_IN_PYso__synaptic_post = _array_IGABAA_IN_PYso__synaptic_post;
+    double* __restrict  _ptr_array_IGABAA_IN_PYso_gGABAA = _array_IGABAA_IN_PYso_gGABAA;
+    double* __restrict  _ptr_array_PYso_group_iGABAA_IN_PYso = _array_PYso_group_iGABAA_IN_PYso;
+    double* __restrict  _ptr_array_IGABAA_IN_PYso_propoCondMult = _array_IGABAA_IN_PYso_propoCondMult;
+    double* __restrict  _ptr_array_IGABAA_IN_PYso_radius = _array_IGABAA_IN_PYso_radius;
+    char* __restrict  _ptr_array_IGABAA_IN_PYso_remove_recurrent_bool = _array_IGABAA_IN_PYso_remove_recurrent_bool;
+    double* __restrict  _ptr_array_IGABAA_IN_PYso_res_GABAA = _array_IGABAA_IN_PYso_res_GABAA;
+    double* __restrict  _ptr_array_IGABAA_IN_PYso_sGABAA = _array_IGABAA_IN_PYso_sGABAA;
+    double* __restrict  _ptr_array_PYso_group_v = _array_PYso_group_v;
+
+
+    //// MAIN CODE ////////////
+    const int _target_size = N_post;
+
+    // Set all the target variable values to zero
+    #pragma omp parallel for schedule(static)
+    for (int _target_idx=0; _target_idx<_target_size; _target_idx++)
+    {
+        _ptr_array_PYso_group_iGABAA_IN_PYso[_target_idx + 0] = 0;
+    }
+
+    // scalar code
+    const size_t _vectorisation_idx = -1;
+        
+
+
+    for(int _idx=0; _idx<_ptr_array_IGABAA_IN_PYso_N[0]; _idx++)
+    {
+        // vector code
+        const size_t _vectorisation_idx = _idx;
+                
+        const int32_t _postsynaptic_idx = _ptr_array_IGABAA_IN_PYso__synaptic_post[_idx];
+        const double EGABAA = _ptr_array_IGABAA_IN_PYso_EGABAA[_idx];
+        const double Npost = _ptr_array_IGABAA_IN_PYso_Npost[_idx];
+        const double Npre = _ptr_array_IGABAA_IN_PYso_Npre[_idx];
+        const double gGABAA = _ptr_array_IGABAA_IN_PYso_gGABAA[_idx];
+        const double propoCondMult = _ptr_array_IGABAA_IN_PYso_propoCondMult[_idx];
+        const double radius = _ptr_array_IGABAA_IN_PYso_radius[_idx];
+        const char remove_recurrent_bool = _ptr_array_IGABAA_IN_PYso_remove_recurrent_bool[_idx];
+        const double res_GABAA = _ptr_array_IGABAA_IN_PYso_res_GABAA[_idx];
+        const double sGABAA = _ptr_array_IGABAA_IN_PYso_sGABAA[_idx];
+        const double v_post = _ptr_array_PYso_group_v[_postsynaptic_idx];
+        double normalizing_factor;
+        if(!remove_recurrent_bool)
+            normalizing_factor = _clip(1.0f*((1.0 + (2.0 * radius)) * Npre)/Npost, 0, Npre);
+        else 
+            normalizing_factor = _clip(1.0f*((2.0 * radius) * Npre)/Npost, 0, Npre);
+        const double _synaptic_var = 1.0f*(((((- propoCondMult) * gGABAA) * res_GABAA) * sGABAA) * (v_post - EGABAA))/normalizing_factor;
+
+        _ptr_array_PYso_group_iGABAA_IN_PYso[_ptr_array_IGABAA_IN_PYso__synaptic_post[_idx]] += _synaptic_var;
+    }
+
+}
+
+

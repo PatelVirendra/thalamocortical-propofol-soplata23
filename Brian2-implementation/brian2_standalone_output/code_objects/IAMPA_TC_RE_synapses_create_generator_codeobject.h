@@ -1,0 +1,7 @@
+#ifndef _INCLUDED_IAMPA_TC_RE_synapses_create_generator_codeobject
+#define _INCLUDED_IAMPA_TC_RE_synapses_create_generator_codeobject
+
+void _run_IAMPA_TC_RE_synapses_create_generator_codeobject();
+
+
+#endif

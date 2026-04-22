@@ -1,0 +1,7 @@
+#ifndef _INCLUDED_ICOM_PYdr_PYso_synapses_create_generator_codeobject
+#define _INCLUDED_ICOM_PYdr_PYso_synapses_create_generator_codeobject
+
+void _run_ICOM_PYdr_PYso_synapses_create_generator_codeobject();
+
+
+#endif

@@ -1,0 +1,7 @@
+#ifndef _INCLUDED_IGABAB_RE_TC_stateupdater_codeobject
+#define _INCLUDED_IGABAB_RE_TC_stateupdater_codeobject
+
+void _run_IGABAB_RE_TC_stateupdater_codeobject();
+
+
+#endif

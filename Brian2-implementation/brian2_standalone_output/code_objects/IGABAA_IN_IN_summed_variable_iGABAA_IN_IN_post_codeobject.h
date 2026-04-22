@@ -1,0 +1,7 @@
+#ifndef _INCLUDED_IGABAA_IN_IN_summed_variable_iGABAA_IN_IN_post_codeobject
+#define _INCLUDED_IGABAA_IN_IN_summed_variable_iGABAA_IN_IN_post_codeobject
+
+void _run_IGABAA_IN_IN_summed_variable_iGABAA_IN_IN_post_codeobject();
+
+
+#endif

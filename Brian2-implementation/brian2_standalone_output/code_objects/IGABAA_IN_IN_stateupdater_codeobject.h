@@ -1,0 +1,7 @@
+#ifndef _INCLUDED_IGABAA_IN_IN_stateupdater_codeobject
+#define _INCLUDED_IGABAA_IN_IN_stateupdater_codeobject
+
+void _run_IGABAA_IN_IN_stateupdater_codeobject();
+
+
+#endif

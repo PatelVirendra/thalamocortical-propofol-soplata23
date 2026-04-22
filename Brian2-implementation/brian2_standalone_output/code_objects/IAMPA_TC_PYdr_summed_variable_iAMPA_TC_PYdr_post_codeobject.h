@@ -1,0 +1,7 @@
+#ifndef _INCLUDED_IAMPA_TC_PYdr_summed_variable_iAMPA_TC_PYdr_post_codeobject
+#define _INCLUDED_IAMPA_TC_PYdr_summed_variable_iAMPA_TC_PYdr_post_codeobject
+
+void _run_IAMPA_TC_PYdr_summed_variable_iAMPA_TC_PYdr_post_codeobject();
+
+
+#endif

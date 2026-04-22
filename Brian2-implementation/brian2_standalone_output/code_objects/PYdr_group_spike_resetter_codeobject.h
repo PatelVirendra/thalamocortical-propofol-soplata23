@@ -1,0 +1,7 @@
+#ifndef _INCLUDED_PYdr_group_spike_resetter_codeobject
+#define _INCLUDED_PYdr_group_spike_resetter_codeobject
+
+void _run_PYdr_group_spike_resetter_codeobject();
+
+
+#endif

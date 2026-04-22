@@ -1,0 +1,6 @@
+#ifndef _INCLUDED_IN_group_spike_thresholder_codeobject_after
+#define _INCLUDED_IN_group_spike_thresholder_codeobject_after
+
+void _after_run_IN_group_spike_thresholder_codeobject();
+
+#endif

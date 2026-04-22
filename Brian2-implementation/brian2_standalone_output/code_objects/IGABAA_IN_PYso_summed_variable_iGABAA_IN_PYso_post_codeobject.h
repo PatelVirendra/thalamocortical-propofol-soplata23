@@ -1,0 +1,7 @@
+#ifndef _INCLUDED_IGABAA_IN_PYso_summed_variable_iGABAA_IN_PYso_post_codeobject
+#define _INCLUDED_IGABAA_IN_PYso_summed_variable_iGABAA_IN_PYso_post_codeobject
+
+void _run_IGABAA_IN_PYso_summed_variable_iGABAA_IN_PYso_post_codeobject();
+
+
+#endif

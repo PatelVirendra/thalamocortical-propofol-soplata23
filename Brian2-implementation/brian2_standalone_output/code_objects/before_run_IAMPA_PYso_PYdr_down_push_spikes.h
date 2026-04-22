@@ -1,0 +1,6 @@
+#ifndef _INCLUDED_IAMPA_PYso_PYdr_down_push_spikes_before
+#define _INCLUDED_IAMPA_PYso_PYdr_down_push_spikes_before
+
+void _before_run_IAMPA_PYso_PYdr_down_push_spikes();
+
+#endif
