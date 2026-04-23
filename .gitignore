@@ -2,7 +2,7 @@
 *.npz
 *.pkl
 *.txt
-results/
+results/data/
 data/
 
 # Compiled NEURON files
