@@ -228,7 +228,7 @@ cd Brian2-implementation
 python KopellNet.py
 ```
 
-The default condition is propofol. See `config.py` and `KopellNet.py` for the full list of conditions and configuration options.
+The default condition is propofol. See `config.py` and `KopellNet.py` for the full list of conditions and configuration options. By default, 2 threads are used with OpenMP. If you wish to run on more threads, or only a single thread, then use the flag `--openmp_threads 1` with the previous command.
 
 ---
 
@@ -331,7 +331,40 @@ The original DynaSim function uses an `and` condition to compare pre- and postsy
 The original DynaSim code uses a fixed soma–dendrite axial conductance of 1.75 µS for all pyramidal cells. With this value (and the corrected connectivity), the propofol condition produces only an I-state with no C-state. The source paper by Benita et al. (2012), from which the cortical model was adapted, specifies that axial conductance varies normally across cells (σ = ±0.1 µS). Implementing this cell-to-cell variability restores the expected alternating C-state/I-state dynamics. The compartmental coupling equations in the supplementary material of Soplata et al. are also slightly incorrect.
 
 **Discrepancy in Table 1 Poisson conductance**
-The paper states that Poisson input conductance covaries with the AMPA conductances (`PYso→PYdr` and `TC→PYdr`) as propofol dose increases. Implementing this logic produced results inconsistent with the paper's hypothesis (C-state percentage increased with dose instead of decreasing). Table 2, by contrast, uses a fixed Poisson conductance of 0.004 mS/cm². Applying a fixed value of 0.005 mS/cm² (the original propofol-state value) to both tables recovers the expected behavior: C-state proportion decreases monotonically with increasing dose. This suggests the AMPA conductance change alone is sufficient to model propofol dose escalation. Both versions of the data are included for reference: `tables_propofol_BAD` uses the method described in the paper; `tables_propofol` uses the corrected method.
+The paper states that Poisson input conductance covaries with the AMPA conductances (`PYso→PYdr` and `TC→PYdr`) as propofol dose increases. Implementing this logic produced results inconsistent with the paper's hypothesis. As shown below (`tables_propofol_BAD`), C-state percentage *increases* with dose instead of decreasing — the opposite of the expected clinical trend:
+ 
+```
+TABLE 1 (BAD) — varying Poisson conductance, as described in the paper
+gTC = gPY   mean C-state %   std %
+0.0020       28.66           25.23
+0.0040       30.41           29.55
+0.0060       29.23           29.62
+0.0080       37.88           33.12
+0.0100       50.90           28.47
+0.0120       67.40           23.91     ← C-state increases with dose (wrong)
+```
+ 
+Table 2 in the paper uses a fixed Poisson conductance of 0.004 mS/cm². Applying a fixed value of 0.005 mS/cm² (the original propofol-state value) to *both* tables restores the expected behavior — C-state proportion decreases monotonically with increasing dose:
+ 
+```
+TABLE 1 (CORRECTED) — fixed Poisson conductance = 0.005 mS/cm²
+gTC = gPY   mean C-state %   std %
+0.0020       63.42           21.51
+0.0040       36.55           29.90
+0.0060       21.62           28.26
+0.0080       12.71           22.01
+0.0100        5.71           15.15
+0.0120        2.87            9.55     ← C-state decreases with dose (correct)
+ 
+TABLE 2 (CORRECTED) — fixed Poisson conductance = 0.005 mS/cm²
+gTC \ gPY    0.0040        0.0060        0.0080        0.0100
+0.0040     38.7±29.9     32.7±33.9     24.2±27.1     22.1±28.2
+0.0060     26.4±32.2     22.8±29.1     14.0±25.9     11.2±20.9
+0.0080     20.0±28.4     10.8±20.0     14.5±22.5      7.0±13.7
+0.0100     12.2±25.9      8.3±16.9      9.2±21.3      4.1±10.9
+```
+ 
+This suggests that the AMPA conductance change alone is sufficient to model propofol dose escalation, and that the Poisson conductance should be held fixed. Both datasets are included in the repository: `tables_propofol_BAD/` (varying Poisson, as described in the paper) and `tables_propofol/` (fixed Poisson at 0.005 mS/cm², corrected method).
 
 ---
 
